@@ -265,6 +265,56 @@ function ScanBeam({ isDark }) {
   )
 }
 
+/* ─── Light Theme Extra Animation ─── */
+function FloatingGeometricShapes({ isDark }) {
+  const group = useRef()
+  
+  // Only render in light theme
+  if (isDark) return null
+
+  const shapes = useMemo(() => {
+    return Array.from({ length: 30 }).map(() => ({
+      pos: [(Math.random() - 0.5) * 22, (Math.random() - 0.5) * 16, (Math.random() - 0.5) * 10 - 2],
+      speed: 0.3 + Math.random() * 0.7,
+      rotSpeed: 0.2 + Math.random() * 1.2,
+      size: 0.15 + Math.random() * 0.4,
+      offset: Math.random() * Math.PI * 2,
+      type: Math.floor(Math.random() * 3)
+    }))
+  }, [])
+
+  useFrame(({ clock }) => {
+    if (!group.current) return
+    const t = clock.getElapsedTime()
+    group.current.children.forEach((child, i) => {
+      const shape = shapes[i]
+      child.position.y = shape.pos[1] + Math.sin(t * shape.speed + shape.offset) * 2
+      child.rotation.x = t * shape.rotSpeed
+      child.rotation.y = t * shape.rotSpeed * 0.8
+    })
+  })
+
+  return (
+    <group ref={group}>
+      {shapes.map((shape, i) => (
+        <mesh key={i} position={shape.pos}>
+          {shape.type === 0 && <boxGeometry args={[shape.size, shape.size, shape.size]} />}
+          {shape.type === 1 && <octahedronGeometry args={[shape.size]} />}
+          {shape.type === 2 && <tetrahedronGeometry args={[shape.size]} />}
+          <meshStandardMaterial 
+            color="#0ea5e9" 
+            emissive="#38bdf8" 
+            emissiveIntensity={0.8} 
+            wireframe 
+            transparent 
+            opacity={0.35} 
+          />
+        </mesh>
+      ))}
+    </group>
+  )
+}
+
 /* ─── Camera Rig ─── */
 function CameraRig() {
   const { camera } = useThree()
@@ -338,6 +388,9 @@ export default function Hero3D() {
 
         {/* Particle beams */}
         <ParticleBeams count={100} isDark={isDark} />
+
+        {/* Extra animations for Light Theme */}
+        <FloatingGeometricShapes isDark={isDark} />
 
         {/* Mouse camera */}
         <CameraRig />
