@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Hero3D from './components/Hero3D'
+import InteractiveCursor3D from './components/InteractiveCursor3D'
 
 const highlights = [
   { label: 'Projects Built', value: '5+ Full Stack & ML Projects' },
@@ -466,6 +467,7 @@ export default function App() {
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(34,211,238,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.08)_1px,transparent_1px)] [background-size:28px_28px]" />
 
       <Hero3D />
+      <InteractiveCursor3D />
 
       <main className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-20">
         <motion.section
