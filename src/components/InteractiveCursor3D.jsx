@@ -134,9 +134,12 @@ function GlobalCursor({ isDark }) {
 /* ─── MAIN EXPORT ─── */
 export default function InteractiveCursor3D() {
   const isDark = useTheme()
+  const isMobile = useIsMobile()
 
-  // Notice we removed the pointerEvents: 'none' workaround logic because 
-  // GlobalCursor explicitly listens to window events now, ensuring it works flawlessly.
+  // On mobile, do not render the 3D overlay at all for better performance and readability
+  if (isMobile) {
+    return null
+  }
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 50, pointerEvents: 'none' }}>
