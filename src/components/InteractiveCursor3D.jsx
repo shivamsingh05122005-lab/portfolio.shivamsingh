@@ -90,83 +90,73 @@ function DesktopCursor({ isDark }) {
   )
 }
 
-/* ─── MOBILE PARTICLES (Scroll-Activated Energy) ─── */
-function MobileParticles({ count = 40, isDark }) {
+/* ─── MOBILE GEOMETRY (Scroll-Linked Rotation) ─── */
+function MobileGeometry({ isDark }) {
   const ref = useRef()
   const scrollY = useRef(0)
-  const { viewport } = useThree()
+  const targetRotation = useRef({ x: 0, y: 0 })
 
-  const glowColor = isDark ? "#67e8f9" : "#0284c7"
-
-  // Track scroll position
   useEffect(() => {
     if (typeof window === 'undefined') return
     const handleScroll = () => {
       scrollY.current = window.scrollY
+      // Map scroll position to target rotation
+      targetRotation.current.y = scrollY.current * 0.005
+      targetRotation.current.x = scrollY.current * 0.002
     }
+    
+    // Initial check
+    handleScroll()
+    
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Generate random particles
-  const { positions, randomFactors } = useMemo(() => {
-    const pos = new Float32Array(count * 3)
-    const rFactors = new Float32Array(count)
-    for (let i = 0; i < count; i++) {
-      // Random X within viewport width, random Y within viewport height
-      pos[i * 3] = (Math.random() - 0.5) * 10
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 20
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 5
-      
-      // Random speed factor
-      rFactors[i] = Math.random() * 0.5 + 0.5
-    }
-    return { positions: pos, randomFactors: rFactors }
-  }, [count])
-
-  useFrame(({ clock }) => {
+  useFrame(() => {
     if (!ref.current) return
-    const posAttr = ref.current.geometry.attributes.position
-    const t = clock.getElapsedTime()
-    
-    // Base scroll speed plus subtle floating animation
-    const scrollOffset = scrollY.current * 0.01
-
-    for (let i = 0; i < count; i++) {
-      let y = posAttr.array[i * 3 + 1]
-      
-      // Move particle up based on time and scroll offset
-      y += (0.02 * randomFactors[i]) + (scrollOffset * 0.005)
-      
-      // Reset particle if it goes off top of screen
-      if (y > viewport.height / 2 + 2) {
-        y = -viewport.height / 2 - 2
-        posAttr.array[i * 3] = (Math.random() - 0.5) * viewport.width // New random X
-      }
-      
-      posAttr.array[i * 3 + 1] = y
-      
-      // Subtle sine wave X movement
-      posAttr.array[i * 3] += Math.sin(t * 2 + i) * 0.005
-    }
-    posAttr.needsUpdate = true
+    // Smoothly lerp towards target rotation. Stops completely when scrolling stops.
+    ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, targetRotation.current.y, 0.1)
+    ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, targetRotation.current.x, 0.1)
   })
 
+  const glowColor = isDark ? "#22d3ee" : "#0284c7"
+
   return (
-    <points ref={ref}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-      </bufferGeometry>
-      <pointsMaterial 
-        color={glowColor} 
-        size={isDark ? 0.08 : 0.05} 
-        transparent 
-        opacity={isDark ? 0.6 : 0.3}
-        sizeAttenuation 
-        depthWrite={false} 
-        blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} 
-      />
-    </points>
+    <group ref={ref} position={[0, 0, -2]}>
+      {/* Outer abstract wireframe sphere */}
+      <mesh>
+        <icosahedronGeometry args={[2.5, 1]} />
+        <meshBasicMaterial 
+          color={glowColor} 
+          wireframe 
+          transparent 
+          opacity={isDark ? 0.12 : 0.06} 
+          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} 
+        />
+      </mesh>
+      
+      {/* Intersecting Torus Ring 1 */}
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[1.8, 0.02, 16, 64]} />
+        <meshBasicMaterial 
+          color={glowColor} 
+          transparent 
+          opacity={isDark ? 0.3 : 0.15} 
+          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} 
+        />
+      </mesh>
+      
+      {/* Intersecting Torus Ring 2 */}
+      <mesh rotation={[0, Math.PI / 2, 0]}>
+        <torusGeometry args={[1.5, 0.02, 16, 64]} />
+        <meshBasicMaterial 
+          color={glowColor} 
+          transparent 
+          opacity={isDark ? 0.4 : 0.2} 
+          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} 
+        />
+      </mesh>
+    </group>
   )
 }
 
@@ -185,7 +175,7 @@ export default function InteractiveCursor3D() {
         <ambientLight intensity={isDark ? 1 : 1.5} />
         
         {isMobile ? (
-          <MobileParticles count={50} isDark={isDark} />
+          <MobileGeometry isDark={isDark} />
         ) : (
           <DesktopCursor isDark={isDark} />
         )}
