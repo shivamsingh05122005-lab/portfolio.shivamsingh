@@ -1,0 +1,15 @@
+Placeholder Resume
+==================
+
+Name: Alex Carter
+Role: Software Engineer
+
+Summary:
+Frontend-focused full-stack engineer building scalable web apps.
+
+Experience:
+- Built production React interfaces used by 10k+ users.
+- Developed REST APIs and CI/CD workflows.
+
+Education:
+B.Tech in Computer Science (Placeholder)
