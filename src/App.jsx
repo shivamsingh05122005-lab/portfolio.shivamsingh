@@ -58,7 +58,7 @@ const codingProfiles = [
     problemsSolved: '356',
     rating: '1604',
     badge: '⭐',
-    color: { bg: 'bg-amber-500/15', border: 'border-amber-400/25', text: 'text-amber-300', dot: 'bg-amber-400', glow: 'rgba(251,191,36,0.2)', accent: '#fbbf24' },
+    color: { bg: 'bg-amber-100 dark:bg-amber-500/15', border: 'border-amber-300 dark:border-amber-400/25', text: 'text-amber-700 dark:text-amber-300', dot: 'bg-amber-400', glow: 'rgba(251,191,36,0.2)', accent: '#fbbf24' },
     href: 'https://leetcode.com/u/NetWeIOcsdre/',
   },
   {
@@ -67,7 +67,7 @@ const codingProfiles = [
     problemsSolved: '8',
     rating: 'Newbie (637)',
     badge: '🟢',
-    color: { bg: 'bg-blue-500/15', border: 'border-blue-400/25', text: 'text-blue-300', dot: 'bg-blue-400', glow: 'rgba(96,165,250,0.2)', accent: '#60a5fa' },
+    color: { bg: 'bg-blue-100 dark:bg-blue-500/15', border: 'border-blue-300 dark:border-blue-400/25', text: 'text-blue-300', dot: 'bg-blue-400', glow: 'rgba(96,165,250,0.2)', accent: '#60a5fa' },
     href: 'https://codeforces.com/profile/Shivam_7080',
   },
   {
@@ -76,7 +76,7 @@ const codingProfiles = [
     problemsSolved: '10+',
     rating: '1★ (742)',
     badge: '⭐',
-    color: { bg: 'bg-orange-500/15', border: 'border-orange-400/25', text: 'text-orange-300', dot: 'bg-orange-400', glow: 'rgba(251,146,60,0.2)', accent: '#fb923c' },
+    color: { bg: 'bg-orange-100 dark:bg-orange-500/15', border: 'border-orange-300 dark:border-orange-400/25', text: 'text-orange-300', dot: 'bg-orange-400', glow: 'rgba(251,146,60,0.2)', accent: '#fb923c' },
     href: 'https://www.codechef.com/users/goofy_noble_71',
   },
   {
@@ -85,7 +85,7 @@ const codingProfiles = [
     problemsSolved: '200+',
     rating: 'Active Contributor',
     badge: '🏆',
-    color: { bg: 'bg-emerald-500/15', border: 'border-emerald-400/25', text: 'text-emerald-300', dot: 'bg-emerald-400', glow: 'rgba(52,211,153,0.2)', accent: '#34d399' },
+    color: { bg: 'bg-emerald-100 dark:bg-emerald-500/15', border: 'border-emerald-300 dark:border-emerald-300 dark:border-emerald-400/25', text: 'text-emerald-700 dark:text-emerald-300', dot: 'bg-emerald-400', glow: 'rgba(52,211,153,0.2)', accent: '#34d399' },
     href: 'https://www.geeksforgeeks.org/profile/enggshivam70rd',
   },
 ]
@@ -269,7 +269,7 @@ function CodingCarousel() {
         href={profile.href}
         target="_blank"
         rel="noreferrer"
-        className={`block rounded-2xl border bg-gradient-to-br from-[#10161f]/90 to-[#1a1012]/90 p-6 transition-all duration-300 ${isCenter
+        className={`block rounded-2xl border bg-gradient-to-br from-white to-slate-50 dark:from-[#10161f]/90 dark:to-[#1a1012]/90 p-6 transition-all duration-300 ${isCenter
             ? `${profile.color.border} shadow-[0_0_40px_${profile.color.glow}]`
             : 'border-slate-700/30 opacity-40 blur-[1px]'
           }`}
@@ -297,12 +297,12 @@ function CodingCarousel() {
               {profile.badge}
             </div>
             <div>
-              <h3 className="text-xl font-bold text-amber-100">{profile.platform}</h3>
-              <p className="text-xs text-slate-500">@{profile.handle}</p>
+              <h3 className="text-xl font-bold text-amber-700 dark:text-amber-100">{profile.platform}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">@{profile.handle}</p>
             </div>
           </div>
           {isCenter && (
-            <div className="text-slate-400">
+            <div className="text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                 <polyline points="15 3 21 3 21 9" />
@@ -315,11 +315,11 @@ function CodingCarousel() {
         {/* Stats */}
         <div className="relative mt-5 grid grid-cols-2 gap-4">
           <div className={`rounded-lg border ${profile.color.border} ${profile.color.bg} p-4`}>
-            <p className="text-xs text-slate-400">Problems Solved</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">Problems Solved</p>
             <p className={`mt-1 text-2xl font-bold ${profile.color.text}`}>{profile.problemsSolved}</p>
           </div>
           <div className={`rounded-lg border ${profile.color.border} ${profile.color.bg} p-4`}>
-            <p className="text-xs text-slate-400">Rating / Rank</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">Rating / Rank</p>
             <p className={`mt-1 text-2xl font-bold ${profile.color.text}`}>{profile.rating}</p>
           </div>
         </div>
@@ -378,7 +378,7 @@ function CodingCarousel() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={prev}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-300/10 text-cyan-300 transition hover:bg-cyan-300/20"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-100 dark:bg-cyan-300/10 text-cyan-600 dark:text-cyan-300 transition hover:bg-cyan-200 dark:hover:bg-cyan-200 dark:bg-cyan-300/20"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 18 9 12 15 6" />
@@ -407,7 +407,7 @@ function CodingCarousel() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={next}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-300/10 text-cyan-300 transition hover:bg-cyan-300/20"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-100 dark:bg-cyan-300/10 text-cyan-600 dark:text-cyan-300 transition hover:bg-cyan-200 dark:hover:bg-cyan-200 dark:bg-cyan-300/20"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="9 18 15 12 9 6" />
@@ -424,9 +424,9 @@ function CodingCarousel() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="text-sm text-slate-400"
+            className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400"
           >
-            {active + 1} / {total} — <span className="text-amber-100">{codingProfiles[active].platform}</span>
+            {active + 1} / {total} — <span className="text-amber-700 dark:text-amber-100">{codingProfiles[active].platform}</span>
           </motion.p>
         </AnimatePresence>
       </div>
@@ -437,9 +437,9 @@ function CodingCarousel() {
 function SectionHeading({ eyebrow, title, subtitle }) {
   return (
     <div className="mb-8">
-      {eyebrow ? <p className="text-xs uppercase tracking-[0.22em] text-cyan-300">{eyebrow}</p> : null}
-      <h2 className="mt-2 text-3xl font-semibold text-amber-100 md:text-4xl">{title}</h2>
-      {subtitle ? <p className="mt-3 max-w-3xl text-slate-300">{subtitle}</p> : null}
+      {eyebrow ? <p className="text-xs uppercase tracking-[0.22em] text-cyan-600 dark:text-cyan-300">{eyebrow}</p> : null}
+      <h2 className="mt-2 text-3xl font-semibold text-amber-700 dark:text-amber-100 md:text-4xl">{title}</h2>
+      {subtitle ? <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">{subtitle}</p> : null}
     </div>
   )
 }
@@ -462,7 +462,7 @@ export default function App() {
   }, [heroText])
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0b0d12] text-white">
+    <div className="relative min-h-screen overflow-hidden bg-slate-50 text-slate-900 dark:bg-[#0b0d12] dark:text-white">
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(34,211,238,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.08)_1px,transparent_1px)] [background-size:28px_28px]" />
 
       <Hero3D />
@@ -472,7 +472,7 @@ export default function App() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-[#0b1220]/70 via-[#0d1117]/75 to-[#0a1628]/70 p-8 shadow-[0_0_60px_rgba(34,211,238,0.15)] backdrop-blur-sm md:p-12"
+          className="relative overflow-hidden rounded-2xl border border-cyan-200 dark:border-cyan-400/20 bg-white/80 dark:bg-gradient-to-br dark:from-[#0b1220]/70 dark:via-[#0d1117]/75 dark:to-[#0a1628]/70 p-8 shadow-[0_0_60px_rgba(34,211,238,0.15)] backdrop-blur-sm md:p-12"
         >
           {/* Grid dot pattern */}
           <div
@@ -492,16 +492,16 @@ export default function App() {
           >
             {['Full-Stack Developer', 'ML Engineer', 'Data Science'].map((role, i) => {
               const colors = [
-                { dot: 'bg-cyan-400 shadow-[0_0_6px_rgba(34,211,238,0.6)]', border: 'border-cyan-400/30', text: 'text-cyan-300' },
-                { dot: 'bg-violet-400 shadow-[0_0_6px_rgba(167,139,250,0.6)]', border: 'border-violet-400/30', text: 'text-violet-300' },
-                { dot: 'bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.6)]', border: 'border-amber-400/30', text: 'text-amber-300' },
+                { dot: 'bg-cyan-400 shadow-[0_0_6px_rgba(34,211,238,0.6)]', border: 'border-cyan-300 dark:border-cyan-400/30', text: 'text-cyan-600 dark:text-cyan-300' },
+                { dot: 'bg-violet-400 shadow-[0_0_6px_rgba(167,139,250,0.6)]', border: 'border-violet-300 dark:border-violet-400/30', text: 'text-violet-700 dark:text-violet-300' },
+                { dot: 'bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.6)]', border: 'border-amber-300 dark:border-amber-400/30', text: 'text-amber-700 dark:text-amber-300' },
               ]
               const c = colors[i]
               return (
                 <motion.span
                   key={role}
                   variants={cardAnim}
-                  className={`inline-flex items-center gap-2 rounded-full border ${c.border} bg-slate-950/60 px-3.5 py-1.5 text-xs font-medium uppercase tracking-widest ${c.text}`}
+                  className={`inline-flex items-center gap-2 rounded-full border ${c.border} bg-slate-100 dark:bg-slate-950/60 px-3.5 py-1.5 text-xs font-medium uppercase tracking-widest ${c.text}`}
                 >
                   <motion.span
                     animate={{ scale: [1, 1.4, 1] }}
@@ -514,18 +514,17 @@ export default function App() {
             })}
           </motion.div>
 
-          {/* Name */}
-          <h1 className="bg-gradient-to-r from-amber-200 via-orange-300 to-red-300 bg-clip-text text-4xl font-bold leading-tight text-transparent md:text-6xl">
+          <h1 className="bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-4xl font-bold leading-tight text-transparent dark:from-amber-200 dark:via-orange-300 dark:to-red-300 md:text-6xl">
             Shivam Singh
           </h1>
 
           {/* Typed bio */}
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-200 md:text-xl">
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-200 md:text-xl">
             {typedText}
             <motion.span
               animate={{ opacity: [1, 0, 1] }}
               transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
-              className="ml-1 inline-block h-6 w-[2px] bg-cyan-300 align-middle"
+              className="ml-1 inline-block h-6 w-[2px] bg-cyan-600 align-middle dark:bg-cyan-300"
             />
           </p>
 
@@ -542,10 +541,10 @@ export default function App() {
                 key={item.label}
                 variants={cardAnim}
                 whileHover={{ y: -6, scale: 1.02 }}
-                className="group rounded-xl border border-cyan-300/20 bg-slate-950/70 p-4 shadow-[inset_0_0_24px_rgba(34,211,238,0.06)] transition-all duration-300 hover:border-cyan-300/40"
+                className="group rounded-xl border border-cyan-200 dark:border-cyan-200 dark:border-cyan-300/20 bg-white dark:bg-slate-950/70 p-4 shadow-[inset_0_0_24px_rgba(34,211,238,0.06)] transition-all duration-300 hover:border-cyan-400 dark:hover:border-cyan-300 dark:border-cyan-300/40"
               >
-                <p className="text-2xl font-bold text-amber-100">{item.value}</p>
-                <p className="mt-1 text-sm text-slate-400">{item.label}</p>
+                <p className="text-2xl font-bold text-amber-700 dark:text-amber-100">{item.value}</p>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">{item.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -558,7 +557,7 @@ export default function App() {
               animate={{ boxShadow: ['0 0 0 rgba(34,211,238,0)', '0 0 18px rgba(34,211,238,0.35)', '0 0 0 rgba(34,211,238,0)'] }}
               transition={{ boxShadow: { duration: 2.4, repeat: Infinity, ease: 'easeInOut' } }}
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-lg border border-cyan-300/40 bg-cyan-300/10 px-6 py-3 font-medium text-cyan-200 transition hover:bg-cyan-300/20"
+              className="inline-flex items-center gap-2 rounded-lg border border-cyan-300 dark:border-cyan-300/40 bg-cyan-100 dark:bg-cyan-300/10 px-6 py-3 font-medium text-cyan-800 dark:text-cyan-200 transition hover:bg-cyan-200 dark:hover:bg-cyan-200 dark:bg-cyan-300/20"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
@@ -572,7 +571,7 @@ export default function App() {
               href="/resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-amber-300/30 bg-amber-300/10 px-6 py-3 font-medium text-amber-100 transition hover:border-amber-200 hover:bg-amber-300/20"
+              className="inline-flex items-center gap-2 rounded-lg border border-amber-300 dark:border-amber-300/30 bg-amber-100 dark:bg-amber-300/10 px-6 py-3 font-medium text-amber-700 dark:text-amber-100 transition hover:border-amber-400 dark:hover:border-amber-200 hover:bg-amber-200 dark:hover:bg-amber-200 dark:bg-amber-300/20"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -583,7 +582,7 @@ export default function App() {
             </motion.a>
 
             {/* Available badge */}
-            <span className="ml-auto hidden items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1.5 text-xs text-emerald-300 md:inline-flex">
+            <span className="ml-auto hidden items-center gap-2 rounded-full border border-emerald-300 dark:border-emerald-300 dark:border-emerald-400/25 bg-emerald-100 dark:bg-emerald-400/10 px-3 py-1.5 text-xs text-emerald-700 dark:text-emerald-300 md:inline-flex">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
@@ -610,73 +609,73 @@ export default function App() {
           <div className="grid gap-6 md:grid-cols-2">
             <motion.div
               variants={cardAnim}
-              className="rounded-xl border border-cyan-300/15 bg-gradient-to-br from-[#10161f]/70 to-[#1a1012]/70 p-6"
+              className="rounded-xl border border-cyan-200 dark:border-cyan-300/15 bg-gradient-to-br from-white to-slate-50 dark:from-[#10161f]/70 dark:to-[#1a1012]/70 p-6"
             >
               <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-cyan-300/20 bg-cyan-300/10">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-cyan-200 dark:border-cyan-200 dark:border-cyan-300/20 bg-cyan-100 dark:bg-cyan-300/10">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-600 dark:text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="16 18 22 12 16 6" />
                     <polyline points="8 6 2 12 8 18" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-amber-100">Clean Code</h3>
+                <h3 className="text-lg font-semibold text-amber-700 dark:text-amber-100">Clean Code</h3>
               </div>
-              <p className="text-sm leading-relaxed text-slate-300">
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 I write readable, maintainable code with clear naming, modular structure, and consistent patterns. Every commit matters.
               </p>
             </motion.div>
 
             <motion.div
               variants={cardAnim}
-              className="rounded-xl border border-amber-300/15 bg-gradient-to-br from-[#1a1012]/70 to-[#10161f]/70 p-6"
+              className="rounded-xl border border-amber-200 dark:border-amber-300/15 bg-gradient-to-br from-white to-slate-50 dark:from-[#1a1012]/70 dark:to-[#10161f]/70 p-6"
             >
               <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-amber-300/20 bg-amber-300/10">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-amber-200 dark:border-amber-300/20 bg-amber-100 dark:bg-amber-300/10">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-700 dark:text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-amber-100">CS Fundamentals</h3>
+                <h3 className="text-lg font-semibold text-amber-700 dark:text-amber-100">CS Fundamentals</h3>
               </div>
-              <p className="text-sm leading-relaxed text-slate-300">
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 Strong grasp of DSA, OS, networking, and database design. 300+ problems solved on LeetCode and Codeforces.
               </p>
             </motion.div>
 
             <motion.div
               variants={cardAnim}
-              className="rounded-xl border border-emerald-300/15 bg-gradient-to-br from-[#0f1a14]/70 to-[#10161f]/70 p-6"
+              className="rounded-xl border border-emerald-200 dark:border-emerald-300/15 bg-gradient-to-br from-white to-slate-50 dark:from-[#0f1a14]/70 dark:to-[#10161f]/70 p-6"
             >
               <div className="mb-4 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-300/20 bg-emerald-300/10">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-700 dark:text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-amber-100">Continuous Growth</h3>
+                <h3 className="text-lg font-semibold text-amber-700 dark:text-amber-100">Continuous Growth</h3>
               </div>
-              <p className="text-sm leading-relaxed text-slate-300">
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 I treat every project as a learning sprint. From MERN stack to ML pipelines — I pick up tools fast and build with intent.
               </p>
             </motion.div>
 
             <motion.div
               variants={cardAnim}
-              className="rounded-xl border border-purple-300/15 bg-gradient-to-br from-[#161020]/70 to-[#10161f]/70 p-6"
+              className="rounded-xl border border-purple-200 dark:border-purple-300/15 bg-gradient-to-br from-white to-slate-50 dark:from-[#161020]/70 dark:to-[#10161f]/70 p-6"
             >
               <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-300/20 bg-purple-300/10">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-300 dark:border-purple-300/20 bg-purple-100 dark:bg-purple-300/10">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600 dark:text-purple-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                     <circle cx="9" cy="7" r="4" />
                     <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-amber-100">Team-First Mindset</h3>
+                <h3 className="text-lg font-semibold text-amber-700 dark:text-amber-100">Team-First Mindset</h3>
               </div>
-              <p className="text-sm leading-relaxed text-slate-300">
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 I value ownership, clear communication, and learning from senior engineers. Ready to contribute from day one.
               </p>
             </motion.div>
@@ -712,9 +711,9 @@ export default function App() {
               {caseStudies.map((item, index) => {
                 const isLeft = index % 2 === 0
                 const colors = [
-                  { border: 'border-cyan-300/20', dot: 'bg-cyan-400', glow: 'shadow-[0_0_12px_rgba(34,211,238,0.3)]', branch: 'bg-cyan-300/20', badge: 'bg-cyan-400/15 text-cyan-300 border-cyan-300/30' },
-                  { border: 'border-amber-300/20', dot: 'bg-amber-400', glow: 'shadow-[0_0_12px_rgba(251,191,36,0.3)]', branch: 'bg-amber-300/20', badge: 'bg-amber-400/15 text-amber-300 border-amber-300/30' },
-                  { border: 'border-red-300/20', dot: 'bg-red-400', glow: 'shadow-[0_0_12px_rgba(252,165,165,0.3)]', branch: 'bg-red-300/20', badge: 'bg-red-400/15 text-red-300 border-red-300/30' },
+                  { border: 'border-cyan-200 dark:border-cyan-200 dark:border-cyan-300/20', dot: 'bg-cyan-400', glow: 'shadow-[0_0_12px_rgba(34,211,238,0.3)]', branch: 'bg-cyan-200 dark:bg-cyan-300/20', badge: 'bg-cyan-100 dark:bg-cyan-400/15 text-cyan-600 dark:text-cyan-300 border-cyan-300 dark:border-cyan-300/30' },
+                  { border: 'border-amber-200 dark:border-amber-300/20', dot: 'bg-amber-400', glow: 'shadow-[0_0_12px_rgba(251,191,36,0.3)]', branch: 'bg-amber-200 dark:bg-amber-300/20', badge: 'bg-amber-100 dark:bg-amber-400/15 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-300/30' },
+                  { border: 'border-red-200 dark:border-red-300/20', dot: 'bg-red-400', glow: 'shadow-[0_0_12px_rgba(252,165,165,0.3)]', branch: 'bg-red-200 dark:bg-red-300/20', badge: 'bg-red-100 dark:bg-red-400/15 text-red-600 dark:text-red-300 border-red-300 dark:border-red-300/30' },
                 ]
                 const c = colors[index % colors.length]
 
@@ -745,7 +744,7 @@ export default function App() {
                     {/* Project card */}
                     <motion.article
                       whileHover={{ y: -6, scale: 1.01 }}
-                      className={`relative flex-1 rounded-2xl border ${c.border} bg-gradient-to-br from-[#1a1012]/80 to-[#10161f]/80 p-6 transition-all hover:shadow-lg`}
+                      className={`relative flex-1 rounded-2xl border ${c.border} bg-gradient-to-br from-white to-slate-50 dark:from-[#1a1012]/80 dark:to-[#10161f]/80 p-6 transition-all hover:shadow-lg`}
                     >
                       {/* Mobile timeline dot */}
                       <div className={`absolute -left-3 top-8 h-3 w-3 rounded-full ${c.dot} ${c.glow} md:hidden`} />
@@ -762,25 +761,25 @@ export default function App() {
                       </div>
 
                       <div className="flex flex-wrap items-center justify-between gap-3">
-                        <h3 className="text-xl font-semibold text-amber-100">{item.title}</h3>
-                        <span className="rounded-full border border-cyan-300/25 px-3 py-1 text-xs text-cyan-200">{item.role}</span>
+                        <h3 className="text-xl font-semibold text-amber-700 dark:text-amber-100">{item.title}</h3>
+                        <span className="rounded-full border border-cyan-300/25 px-3 py-1 text-xs text-cyan-800 dark:text-cyan-200">{item.role}</span>
                       </div>
 
-                      <div className="mt-4 space-y-3 text-sm leading-relaxed text-slate-300 md:text-base">
+                      <div className="mt-4 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300 md:text-base">
                         <p>
-                          <span className="font-semibold text-amber-100">Problem:</span> {item.problem}
+                          <span className="font-semibold text-amber-700 dark:text-amber-100">Problem:</span> {item.problem}
                         </p>
                         <p>
-                          <span className="font-semibold text-amber-100">Approach:</span> {item.approach}
+                          <span className="font-semibold text-amber-700 dark:text-amber-100">Approach:</span> {item.approach}
                         </p>
                         <p>
-                          <span className="font-semibold text-amber-100">Outcome:</span> {item.outcome}
+                          <span className="font-semibold text-amber-700 dark:text-amber-100">Outcome:</span> {item.outcome}
                         </p>
                       </div>
 
                       <div className="mt-4 flex flex-wrap gap-2">
                         {item.stack.map((tech) => (
-                          <span key={tech} className="rounded-full border border-amber-300/25 px-3 py-1 text-xs text-amber-100/90">
+                          <span key={tech} className="rounded-full border border-amber-300 dark:border-amber-300/25 px-3 py-1 text-xs text-amber-700 dark:text-amber-800 dark:text-amber-100/90">
                             {tech}
                           </span>
                         ))}
@@ -791,7 +790,7 @@ export default function App() {
                           href={item.github}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 rounded border border-cyan-300/30 bg-cyan-300/10 px-3 py-2 text-sm text-cyan-200 transition hover:bg-cyan-300/20"
+                          className="inline-flex items-center gap-2 rounded border border-cyan-300 dark:border-cyan-300/30 bg-cyan-100 dark:bg-cyan-300/10 px-3 py-2 text-sm text-cyan-800 dark:text-cyan-200 transition hover:bg-cyan-200 dark:hover:bg-cyan-200 dark:bg-cyan-300/20"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
@@ -802,7 +801,7 @@ export default function App() {
                           href={item.demo}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 rounded border border-amber-300/30 bg-amber-300/10 px-3 py-2 text-sm text-amber-100 transition hover:bg-amber-300/20"
+                          className="inline-flex items-center gap-2 rounded border border-amber-300 dark:border-amber-300/30 bg-amber-100 dark:bg-amber-300/10 px-3 py-2 text-sm text-amber-700 dark:text-amber-100 transition hover:bg-amber-200 dark:hover:bg-amber-200 dark:bg-amber-300/20"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -838,32 +837,32 @@ export default function App() {
           {/* Total stats banner */}
           <motion.div
             variants={cardAnim}
-            className="mb-10 flex flex-wrap items-center justify-center gap-6 rounded-xl border border-cyan-300/15 bg-gradient-to-r from-[#10161f]/70 via-[#131320]/70 to-[#10161f]/70 p-5"
+            className="mb-10 flex flex-wrap items-center justify-center gap-6 rounded-xl border border-cyan-200 dark:border-cyan-300/15 bg-gradient-to-r from-[#10161f]/70 via-[#131320]/70 to-[#10161f]/70 p-5"
           >
             <div className="flex items-center gap-3">
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-300/10"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-100 dark:bg-cyan-300/10"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-600 dark:text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="16 18 22 12 16 6" />
                   <polyline points="8 6 2 12 8 18" />
                 </svg>
               </motion.div>
               <div>
-                <p className="text-2xl font-bold text-amber-100">370+</p>
-                <p className="text-xs text-slate-400">Total Problems Solved</p>
+                <p className="text-2xl font-bold text-amber-700 dark:text-amber-100">370+</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">Total Problems Solved</p>
               </div>
             </div>
             <div className="hidden h-8 w-px bg-slate-700 md:block" />
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-amber-300/25 bg-amber-300/10 text-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-amber-300 dark:border-amber-300/25 bg-amber-100 dark:bg-amber-300/10 text-lg">
                 🏅
               </div>
               <div>
-                <p className="text-2xl font-bold text-amber-100">4</p>
-                <p className="text-xs text-slate-400">Active Platforms</p>
+                <p className="text-2xl font-bold text-amber-700 dark:text-amber-100">4</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">Active Platforms</p>
               </div>
             </div>
             <div className="hidden h-8 w-px bg-slate-700 md:block" />
@@ -876,8 +875,8 @@ export default function App() {
                 🔥
               </motion.div>
               <div>
-                <p className="text-2xl font-bold text-amber-100">Active</p>
-                <p className="text-xs text-slate-400">Contest Participation</p>
+                <p className="text-2xl font-bold text-amber-700 dark:text-amber-100">Active</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">Contest Participation</p>
               </div>
             </div>
           </motion.div>
@@ -961,8 +960,8 @@ export default function App() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="mb-2 text-lg font-semibold text-amber-100">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-400">{item.desc}</p>
+                  <h3 className="mb-2 text-lg font-semibold text-amber-700 dark:text-amber-100">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">{item.desc}</p>
 
                   {/* Hover glow */}
                   <div
@@ -1039,8 +1038,8 @@ export default function App() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="mb-2 text-lg font-semibold text-amber-100">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-400">{item.desc}</p>
+                  <h3 className="mb-2 text-lg font-semibold text-amber-700 dark:text-amber-100">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">{item.desc}</p>
 
                   {/* Bottom accent bar */}
                   <motion.div
@@ -1092,10 +1091,10 @@ export default function App() {
                   href={item.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-xl border border-cyan-300/15 bg-slate-900/70 p-5 transition hover:border-cyan-300/45"
+                  className="rounded-xl border border-cyan-200 dark:border-cyan-300/15 bg-slate-900/70 p-5 transition hover:border-cyan-300/45"
                 >
-                  <p className="text-xs uppercase tracking-[0.15em] text-cyan-300">{item.type}</p>
-                  <h3 className="mt-2 font-semibold text-amber-100">{item.title}</h3>
+                  <p className="text-xs uppercase tracking-[0.15em] text-cyan-600 dark:text-cyan-300">{item.type}</p>
+                  <h3 className="mt-2 font-semibold text-amber-700 dark:text-amber-100">{item.title}</h3>
                 </motion.a>
               ))}
             </motion.div>
@@ -1130,20 +1129,20 @@ export default function App() {
                   key={cert.title}
                   variants={cardAnim}
                   whileHover={{ y: -6, scale: 1.02 }}
-                  className="group relative overflow-hidden rounded-xl border border-cyan-300/15 bg-gradient-to-br from-[#10161f]/80 to-[#1a1012]/80 transition hover:border-cyan-300/40"
+                  className="group relative overflow-hidden rounded-xl border border-cyan-200 dark:border-cyan-300/15 bg-gradient-to-br from-[#10161f]/80 to-[#1a1012]/80 transition hover:border-cyan-400 dark:hover:border-cyan-300 dark:border-cyan-300/40"
                 >
                   <Card {...linkProps} className="block p-6">
                     <div className="absolute -right-4 -top-4 text-6xl opacity-10 transition-opacity group-hover:opacity-20">
                       {cert.icon}
                     </div>
-                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg border border-amber-300/20 bg-amber-300/10 text-2xl">
+                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg border border-amber-200 dark:border-amber-300/20 bg-amber-100 dark:bg-amber-300/10 text-2xl">
                       {cert.icon}
                     </div>
-                    <h3 className="text-lg font-semibold text-amber-100">{cert.title}</h3>
-                    <p className="mt-1 text-sm text-slate-400">{cert.issuer}</p>
+                    <h3 className="text-lg font-semibold text-amber-700 dark:text-amber-100">{cert.title}</h3>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">{cert.issuer}</p>
 
                     {cert.href && (
-                      <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-cyan-300 opacity-70 transition-opacity group-hover:opacity-100">
+                      <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-cyan-600 dark:text-cyan-300 opacity-70 transition-opacity group-hover:opacity-100">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                           <polyline points="15 3 21 3 21 9" />
@@ -1165,7 +1164,7 @@ export default function App() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           id="contact"
-          className="relative overflow-hidden rounded-2xl border border-cyan-300/20 bg-gradient-to-br from-[#0f141d]/95 via-[#131320]/95 to-[#1b1112]/95 p-8 md:p-14"
+          className="relative overflow-hidden rounded-2xl border border-cyan-200 dark:border-cyan-200 dark:border-cyan-300/20 bg-gradient-to-br from-[#0f141d]/95 via-[#131320]/95 to-[#1b1112]/95 p-8 md:p-14"
         >
           {/* Animated ambient glow orbs */}
           <motion.div
@@ -1201,7 +1200,7 @@ export default function App() {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-                className="absolute -inset-4 rounded-full border border-dashed border-cyan-300/20"
+                className="absolute -inset-4 rounded-full border border-dashed border-cyan-200 dark:border-cyan-200 dark:border-cyan-300/20"
               />
               <motion.div
                 animate={{ rotate: -360 }}
@@ -1211,9 +1210,9 @@ export default function App() {
               <motion.div
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-cyan-300/30 bg-gradient-to-br from-cyan-300/15 to-cyan-300/5 shadow-[0_0_30px_rgba(34,211,238,0.15)]"
+                className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-cyan-300 dark:border-cyan-300/30 bg-gradient-to-br from-cyan-300/15 to-cyan-300/5 shadow-[0_0_30px_rgba(34,211,238,0.15)]"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-9 w-9 text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-9 w-9 text-cyan-600 dark:text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                   <circle cx="9" cy="7" r="4" />
                   <line x1="19" y1="8" x2="19" y2="14" />
@@ -1226,20 +1225,20 @@ export default function App() {
             <motion.div
               animate={{ boxShadow: ['0 0 0 rgba(52,211,153,0)', '0 0 20px rgba(52,211,153,0.15)', '0 0 0 rgba(52,211,153,0)'] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-5 py-2"
+              className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-100 dark:bg-emerald-400/10 px-5 py-2"
             >
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
               </span>
-              <span className="text-xs font-semibold tracking-wider text-emerald-300">AVAILABLE FOR OPPORTUNITIES</span>
+              <span className="text-xs font-semibold tracking-wider text-emerald-700 dark:text-emerald-300">AVAILABLE FOR OPPORTUNITIES</span>
             </motion.div>
 
             {/* Gradient heading */}
             <h2 className="mt-3 bg-gradient-to-r from-amber-200 via-amber-100 to-cyan-200 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
               Let&apos;s Connect
             </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-300/90">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-300/90">
               Looking for opportunities to contribute, learn fast, and grow in a strong engineering environment.
               Open to internships and fresher roles.
             </p>
@@ -1248,7 +1247,7 @@ export default function App() {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="mt-6 text-cyan-300/50"
+              className="mt-6 text-cyan-600 dark:text-cyan-300/50"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 5v14" />
@@ -1282,9 +1281,9 @@ export default function App() {
               >
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 transition group-hover:opacity-100" />
                 <div className={`flex h-14 w-14 items-center justify-center rounded-xl transition-all duration-300 ${item.label === 'Email'
-                  ? 'border border-cyan-300/20 bg-cyan-300/10 text-cyan-300 group-hover:bg-cyan-300/20 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.2)]'
+                  ? 'border border-cyan-200 dark:border-cyan-200 dark:border-cyan-300/20 bg-cyan-100 dark:bg-cyan-300/10 text-cyan-600 dark:text-cyan-300 group-hover:bg-cyan-200 dark:hover:bg-cyan-200 dark:bg-cyan-300/20 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.2)]'
                   : item.label === 'GitHub'
-                    ? 'border border-slate-500/20 bg-slate-400/10 text-slate-300 group-hover:bg-slate-400/20 group-hover:shadow-[0_0_15px_rgba(148,163,184,0.15)]'
+                    ? 'border border-slate-500/20 bg-slate-400/10 text-slate-600 dark:text-slate-300 group-hover:bg-slate-400/20 group-hover:shadow-[0_0_15px_rgba(148,163,184,0.15)]'
                     : 'border border-blue-400/20 bg-blue-400/10 text-blue-400 group-hover:bg-blue-400/20 group-hover:shadow-[0_0_15px_rgba(96,165,250,0.2)]'
                   }`}>
                   {item.icon}
