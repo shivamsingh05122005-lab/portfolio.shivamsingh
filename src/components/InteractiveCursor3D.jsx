@@ -90,72 +90,94 @@ function DesktopCursor({ isDark }) {
   )
 }
 
-/* ─── MOBILE GEOMETRY (Scroll-Linked Rotation) ─── */
-function MobileGeometry({ isDark }) {
-  const ref = useRef()
+/* ─── MOBILE EDGE SCANNER ("JARVIS" Style HUD) ─── */
+function JarvisEdgeScanner({ isDark }) {
+  const leftScanner = useRef()
+  const rightScanner = useRef()
   const scrollY = useRef(0)
-  const targetRotation = useRef({ x: 0, y: 0 })
+  const { viewport } = useThree()
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     const handleScroll = () => {
       scrollY.current = window.scrollY
-      // Map scroll position to target rotation
-      targetRotation.current.y = scrollY.current * 0.005
-      targetRotation.current.x = scrollY.current * 0.002
     }
-    
-    // Initial check
     handleScroll()
-    
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useFrame(() => {
-    if (!ref.current) return
-    // Smoothly lerp towards target rotation. Stops completely when scrolling stops.
-    ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, targetRotation.current.y, 0.1)
-    ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, targetRotation.current.x, 0.1)
+  useFrame(({ clock }) => {
+    if (!leftScanner.current || !rightScanner.current) return
+    const t = clock.getElapsedTime()
+    
+    // Smooth scanning motion: sine wave combined with scroll position
+    const scanBase = Math.sin(t * 0.8) * (viewport.height * 0.4)
+    const scrollOffset = scrollY.current * 0.005
+    
+    // We want it to stay largely on screen, moving slightly with scroll and time
+    const wrappedY = ((scanBase + scrollOffset + viewport.height * 10) % viewport.height) - viewport.height / 2
+
+    leftScanner.current.position.y = THREE.MathUtils.lerp(leftScanner.current.position.y, wrappedY, 0.1)
+    rightScanner.current.position.y = THREE.MathUtils.lerp(rightScanner.current.position.y, wrappedY, 0.1)
   })
 
   const glowColor = isDark ? "#22d3ee" : "#0284c7"
+  const edgeX = viewport.width / 2 - 0.15 // Just inside the edge
 
   return (
-    <group ref={ref} position={[0, 0, -2]}>
-      {/* Outer abstract wireframe sphere */}
-      <mesh>
-        <icosahedronGeometry args={[2.5, 1]} />
-        <meshBasicMaterial 
-          color={glowColor} 
-          wireframe 
-          transparent 
-          opacity={isDark ? 0.12 : 0.06} 
-          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} 
-        />
-      </mesh>
-      
-      {/* Intersecting Torus Ring 1 */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.8, 0.02, 16, 64]} />
+    <group position={[0, 0, 0]}>
+      {/* Faint Edge Tracks */}
+      <mesh position={[-edgeX, 0, 0]}>
+        <planeGeometry args={[0.01, viewport.height * 2]} />
         <meshBasicMaterial 
           color={glowColor} 
           transparent 
-          opacity={isDark ? 0.3 : 0.15} 
+          opacity={isDark ? 0.1 : 0.05} 
           blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} 
         />
       </mesh>
-      
-      {/* Intersecting Torus Ring 2 */}
-      <mesh rotation={[0, Math.PI / 2, 0]}>
-        <torusGeometry args={[1.5, 0.02, 16, 64]} />
+      <mesh position={[edgeX, 0, 0]}>
+        <planeGeometry args={[0.01, viewport.height * 2]} />
         <meshBasicMaterial 
           color={glowColor} 
           transparent 
-          opacity={isDark ? 0.4 : 0.2} 
+          opacity={isDark ? 0.1 : 0.05} 
           blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} 
         />
       </mesh>
+
+      {/* Left Scanner HUD Bracket */}
+      <group ref={leftScanner} position={[-edgeX, 0, 0]}>
+        <mesh position={[0, 0, 0]}>
+          <planeGeometry args={[0.04, 0.5]} />
+          <meshBasicMaterial color={glowColor} transparent opacity={isDark ? 0.8 : 0.5} blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} />
+        </mesh>
+        <mesh position={[0.08, 0.25, 0]}>
+          <planeGeometry args={[0.15, 0.02]} />
+          <meshBasicMaterial color={glowColor} transparent opacity={isDark ? 0.8 : 0.5} blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} />
+        </mesh>
+        <mesh position={[0.08, -0.25, 0]}>
+          <planeGeometry args={[0.15, 0.02]} />
+          <meshBasicMaterial color={glowColor} transparent opacity={isDark ? 0.8 : 0.5} blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} />
+        </mesh>
+      </group>
+
+      {/* Right Scanner HUD Bracket */}
+      <group ref={rightScanner} position={[edgeX, 0, 0]}>
+        <mesh position={[0, 0, 0]}>
+          <planeGeometry args={[0.04, 0.5]} />
+          <meshBasicMaterial color={glowColor} transparent opacity={isDark ? 0.8 : 0.5} blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} />
+        </mesh>
+        <mesh position={[-0.08, 0.25, 0]}>
+          <planeGeometry args={[0.15, 0.02]} />
+          <meshBasicMaterial color={glowColor} transparent opacity={isDark ? 0.8 : 0.5} blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} />
+        </mesh>
+        <mesh position={[-0.08, -0.25, 0]}>
+          <planeGeometry args={[0.15, 0.02]} />
+          <meshBasicMaterial color={glowColor} transparent opacity={isDark ? 0.8 : 0.5} blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} />
+        </mesh>
+      </group>
     </group>
   )
 }
@@ -175,7 +197,7 @@ export default function InteractiveCursor3D() {
         <ambientLight intensity={isDark ? 1 : 1.5} />
         
         {isMobile ? (
-          <MobileGeometry isDark={isDark} />
+          <JarvisEdgeScanner isDark={isDark} />
         ) : (
           <DesktopCursor isDark={isDark} />
         )}
