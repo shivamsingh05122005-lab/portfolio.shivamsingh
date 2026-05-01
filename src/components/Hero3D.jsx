@@ -300,8 +300,7 @@ export default function Hero3D() {
   return (
     <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', height: '100vh' }}>
       <Canvas camera={{ position: [0, 2, 12], fov: 60 }} dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-        style={{ pointerEvents: 'auto' }}>
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}>
 
         <ambientLight intensity={isDark ? 0.4 : 0.6} />
         <pointLight position={[5, 5, 5]} intensity={isDark ? 2 : 1} color="#22d3ee" />
