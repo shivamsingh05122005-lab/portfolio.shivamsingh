@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import Hero3D from './components/Hero3D'
 
 const highlights = [
   { label: 'Projects Built', value: '5+ Full Stack & ML Projects' },
@@ -449,8 +450,6 @@ export default function App() {
     [],
   )
   const [typedText, setTypedText] = useState('')
-  const [mouse, setMouse] = useState({ x: 0, y: 0 })
-
   useEffect(() => {
     let index = 0
     const timer = setInterval(() => {
@@ -462,49 +461,18 @@ export default function App() {
     return () => clearInterval(timer)
   }, [heroText])
 
-  useEffect(() => {
-    const handleMove = (event) => {
-      const offsetX = (event.clientX / window.innerWidth - 0.5) * 2
-      const offsetY = (event.clientY / window.innerHeight - 0.5) * 2
-      setMouse({ x: offsetX * 80, y: offsetY * 80 })
-    }
-
-    window.addEventListener('mousemove', handleMove)
-    return () => window.removeEventListener('mousemove', handleMove)
-  }, [])
-
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0b0d12] text-white">
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(34,211,238,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.08)_1px,transparent_1px)] [background-size:28px_28px]" />
 
-      <motion.div
-        animate={{ x: mouse.x, y: mouse.y }}
-        transition={{ type: 'spring', stiffness: 65, damping: 16 }}
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-3xl"
-      />
-
-      <motion.div
-        animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full border border-cyan-300/40 bg-cyan-400/20 blur-2xl"
-      />
-      <motion.div
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute -left-20 top-40 h-80 w-80 rounded-full bg-red-500/20 blur-3xl"
-      />
-      <motion.div
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute -right-20 bottom-20 h-80 w-80 rounded-full bg-amber-400/20 blur-3xl"
-      />
+      <Hero3D />
 
       <main className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-20">
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="relative overflow-hidden rounded-2xl border border-amber-300/20 bg-gradient-to-br from-[#1a0f12]/95 via-[#13131b]/95 to-[#121923]/95 p-8 shadow-[0_0_45px_rgba(34,211,238,0.12)] backdrop-blur md:p-12"
+          className="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-[#0b1220]/70 via-[#0d1117]/75 to-[#0a1628]/70 p-8 shadow-[0_0_60px_rgba(34,211,238,0.15)] backdrop-blur-sm md:p-12"
         >
           {/* Grid dot pattern */}
           <div
@@ -514,31 +482,6 @@ export default function App() {
               backgroundSize: '24px 24px',
             }}
           />
-
-          {/* Dual orbital rings */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="pointer-events-none absolute right-6 top-6 hidden h-28 w-28 rounded-full border border-dashed border-cyan-300/20 md:block"
-          />
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
-            className="pointer-events-none absolute right-10 top-10 hidden h-20 w-20 rounded-full border border-cyan-300/30 md:block"
-          >
-            <div className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
-          </motion.div>
-
-          {/* Floating particles */}
-          {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
-              animate={{ y: [0, -15, 0], opacity: [0.2, 0.5, 0.2] }}
-              transition={{ duration: 3 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.7 }}
-              className="pointer-events-none absolute hidden h-1 w-1 rounded-full bg-cyan-300 md:block"
-              style={{ left: `${15 + i * 18}%`, top: `${20 + (i % 3) * 25}%` }}
-            />
-          ))}
 
           {/* Role pills */}
           <motion.div
