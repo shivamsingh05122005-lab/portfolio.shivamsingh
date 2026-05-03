@@ -603,8 +603,39 @@ export default function App() {
           <SectionHeading
             eyebrow="About Me"
             title="Fresher in Software Engineering"
-            subtitle="B-Tech in Computer Science and Engineering (Data Science) graduate from G.L Bajaj Institute of Technology And Management Greater Noida, ready to build, break, and ship real-world software."
+            subtitle="Software engineering graduate ready to build, break, and ship real-world software."
           />
+
+          <motion.div
+            variants={cardAnim}
+            className="mb-10 relative overflow-hidden rounded-2xl border border-cyan-300/30 bg-gradient-to-r from-cyan-500/10 via-slate-50/60 to-amber-500/10 dark:from-cyan-900/20 dark:via-[#10161f] dark:to-amber-900/20 p-6 md:p-8 shadow-[0_0_40px_rgba(34,211,238,0.1)]"
+          >
+             <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-400/20 blur-[80px]" />
+             <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-amber-400/20 blur-[80px]" />
+             
+             <div className="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-cyan-400/30 bg-cyan-400/10 shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="mb-2 flex items-center gap-3">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-semibold text-amber-700 dark:text-amber-300">
+                      <span className="h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-400"></span>
+                      Education Highlights
+                    </span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-1">
+                    B-Tech in Computer Science and Engineering <span className="text-cyan-600 dark:text-cyan-400">(Data Science)</span>
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg">
+                    G.L Bajaj Institute of Technology And Management Greater Noida
+                  </p>
+                </div>
+             </div>
+          </motion.div>
 
           <div className="grid gap-6 md:grid-cols-2">
             <motion.div
