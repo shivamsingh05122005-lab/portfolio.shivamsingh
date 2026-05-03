@@ -603,7 +603,7 @@ export default function App() {
           <SectionHeading
             eyebrow="About Me"
             title="Fresher in Software Engineering"
-            subtitle="B.Tech graduate ready to build, break, and ship real-world software."
+            subtitle="B-Tech in Computer Science and Engineering (Data Science) graduate from G.L Bajaj Institute of Technology And Management Greater Noida, ready to build, break, and ship real-world software."
           />
 
           <div className="grid gap-6 md:grid-cols-2">
